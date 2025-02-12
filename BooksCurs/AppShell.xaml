@@ -5,6 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BooksCurs"
     xmlns:view="clr-namespace:BooksCurs.Views"
+    xmlns:auth="clr-namespace:BooksCurs.Views.Auth"
+    xmlns:routes="clr-namespace:BooksCurs.Navigation"
     Shell.FlyoutBehavior="Disabled"
     Title="О книгах">
 
@@ -22,4 +24,8 @@
                       Title="Публикации автора"
                       ContentTemplate="{DataTemplate view:AuthorPublicatesPage }"/>
     </TabBar>
+
+    <ShellContent Route="{x:Static routes:Routes.AuthPage}" ContentTemplate="{DataTemplate auth:AuthPage}" />
+    <ShellContent Route="{x:Static routes:Routes.AuthReg}" ContentTemplate="{DataTemplate auth:RegPage}" />
+    
 </Shell>

@@ -2,11 +2,27 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BooksCurs.Views.Auth.RegPage"
-             Title="RegPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Регистрация">
+    <StackLayout Padding="20">
+        <!-- Логотип и название -->
+        <Image Source="images//icon.png" HorizontalOptions="Center" />
+        <Label Text="Название" FontSize="Large" HorizontalOptions="Center" />
+
+        <!-- Поля для ввода данных -->
+        <Entry Placeholder="Имя" />
+        <Entry Placeholder="Фамилия" />
+        <Entry Placeholder="Отчество" />
+        <Entry Placeholder="Логин" />
+        <Entry Placeholder="Пароль" IsPassword="True" />
+
+        <!-- Кнопка регистрации -->
+        <Button Text="Регистрация" BackgroundColor="Blue" TextColor="White" />
+
+        <!-- Ссылка на вход, если есть аккаунт -->
+        <Button Text="Есть аккаунт?" 
+                Background="Transparent"
+                BorderWidth="0"
+                HorizontalOptions="Center" />
+        <Button Text="Вход" BackgroundColor="Gray" TextColor="White" />
+    </StackLayout>
 </ContentPage>

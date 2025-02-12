@@ -5,7 +5,7 @@
              Title="AuthPage">
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
         <!-- Логотип и название -->
-        <Image Source="logo.png" HeightRequest="100" HorizontalOptions="Center" />
+        <Image Source="images//icon.png" HeightRequest="100" HorizontalOptions="Center" />
         <Label Text="Название" FontSize="Large" HorizontalOptions="Center" />
 
         <!-- Поля для ввода логина и пароля -->
