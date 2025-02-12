@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BooksCurs.Views.Auth.AuthPage"
+             Title="AuthPage">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+        <!-- Логотип и название -->
+        <Image Source="logo.png" HeightRequest="100" HorizontalOptions="Center" />
+        <Label Text="Название" FontSize="Large" HorizontalOptions="Center" />
+
+        <!-- Поля для ввода логина и пароля -->
+        <Entry Placeholder="Логин" WidthRequest="300" />
+        <Entry Placeholder="Пароль" IsPassword="True" WidthRequest="300" />
+
+        <!-- Кнопка ввода -->
+        <Button Text="Ввод" BackgroundColor="Blue" TextColor="White" WidthRequest="300" />
+
+        <!-- Ссылка на регистрацию -->
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Нет аккаунта? " />
+                    <Span Text="Регистрация" TextColor="Blue" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
+</ContentPage>

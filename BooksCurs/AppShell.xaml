@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BooksCurs.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BooksCurs"
+    xmlns:view="clr-namespace:BooksCurs.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="О книгах">
+
+    <TabBar>
+        <ShellContent Icon="images//author-publications.png" 
+                      Title="Книги"
+                      ContentTemplate="{DataTemplate view:BooksPage }"/>
+        <ShellContent Icon="images//author-publications.png" 
+                      Title="Авторы"
+                      ContentTemplate="{DataTemplate view:AuthorsPage }"/>
+        <ShellContent Icon="images//author-publications.png" 
+                      Title="Жанры"
+                      ContentTemplate="{DataTemplate view:GenresPage }"/>
+        <ShellContent Icon="images//author-publications.png" 
+                      Title="Публикации автора"
+                      ContentTemplate="{DataTemplate view:AuthorPublicatesPage }"/>
+    </TabBar>
+</Shell>
