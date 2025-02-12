@@ -1,6 +1,4 @@
-﻿
-using System.Text.Json.Serialization;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text;
 using BooksCurs.models;
 
@@ -26,7 +24,7 @@ public class ApiClient
 
     #region User
 
-    public async Task<User?> RegisterUser(User user)
+    public async Task<bool> RegisterUser(User user)
     {
         try
         {
@@ -39,36 +37,38 @@ public class ApiClient
                 password = user.password
             };
 
-            var result = await PostAsync<User>("/api/register", requestData);
+            var result = await PostAsync<object>("/api/register", requestData);
 
             if (result == null)
             {
                 Console.WriteLine("Ошибка: полученные данные пусты.");
-                return null;
+                return false;
             }
 
-            return result;
+            // Автоматический вход после успешной регистрации
+            return await AuthorizeUser(user);
         }
         catch (HttpRequestException httpEx)
         {
             Console.WriteLine("Ошибка HTTP-запроса:");
             Console.WriteLine(httpEx.Message);
-            return null;
+            return false;
         }
         catch (JsonException jsonEx)
         {
             Console.WriteLine("Ошибка обработки JSON:");
             Console.WriteLine(jsonEx.Message);
-            return null;
+            return false;
         }
         catch (Exception ex)
         {
             Console.WriteLine("Произошла непредвиденная ошибка:");
             Console.WriteLine(ex.Message);
-            return null;
+            return false;
         }
     }
-    public async Task<string?> AuthorizeUser(User user)
+
+    public async Task<bool> AuthorizeUser(User user)
     {
         try
         {
@@ -78,28 +78,28 @@ public class ApiClient
             if (result == null || string.IsNullOrEmpty(result.access_token))
             {
                 Console.WriteLine("Ошибка: не удалось получить токен авторизации.");
-                return null;
+                return false;
             }
-
-            return result.access_token;
+            SetToken(result.access_token);
+            return true;
         }
         catch (HttpRequestException httpEx)
         {
             Console.WriteLine("Ошибка HTTP-запроса:");
             Console.WriteLine(httpEx.Message);
-            return null;
+            return false;
         }
         catch (JsonException jsonEx)
         {
             Console.WriteLine("Ошибка обработки JSON:");
             Console.WriteLine(jsonEx.Message);
-            return null;
+            return false;
         }
         catch (Exception ex)
         {
             Console.WriteLine("Произошла непредвиденная ошибка:");
             Console.WriteLine(ex.Message);
-            return null;
+            return false;
         }
     }
 
@@ -428,47 +428,47 @@ public class Program
         apiClient.SetToken(testToken);
 
         #region Test RegisterUser
-        //try
-        //{
-        //    Console.WriteLine("Начинаем регистрацию пользователя...");
+        try
+        {
+            Console.WriteLine("Начинаем регистрацию пользователя...");
 
-        //    var newUser = new User
-        //    {
-        //        name = "John2",
-        //        lname = "Doe2",
-        //        fname = "MiddleName2",
-        //        login = "johndoe3",
-        //        password = "password1233",
-        //        role_id = 1,
-        //    };
+            var newUser = new User
+            {
+                name = "John2",
+                lname = "Doe2",
+                fname = "MiddleName2",
+                login = "johndoe3фыва",
+                password = "password1233фыва",
+                role_id = 1,
+            };
 
-        //    var registeredUser = await apiClient.RegisterUser(newUser);
+            bool isRegistered = await apiClient.RegisterUser(newUser);
 
-        //    if (registeredUser != null)
-        //    {
-        //        Console.WriteLine("Пользователь успешно зарегистрирован.");
-        //        Console.WriteLine($"ID: {registeredUser.user_id}, Логин: {registeredUser.login}");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Не удалось зарегистрировать пользователя.");
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    Console.WriteLine("Произошла ошибка при регистрации пользователя:");
-        //    Console.WriteLine($"Ошибка: {ex.Message}");
+            if (isRegistered)
+            {
+                Console.WriteLine("Пользователь успешно зарегистрирован и авторизован.");
+            }
+            else
+            {
+                Console.WriteLine("Не удалось зарегистрировать или авторизовать пользователя.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Произошла ошибка при регистрации пользователя:");
+            Console.WriteLine($"Ошибка: {ex.Message}");
 
-        //    if (ex is JsonException jsonEx)
-        //    {
-        //        Console.WriteLine("Ошибка в обработке JSON:");
-        //        Console.WriteLine($"Ошибка: {jsonEx.Message}");
-        //        Console.WriteLine($"Стек вызовов: {jsonEx.StackTrace}");
-        //    }
+            if (ex is JsonException jsonEx)
+            {
+                Console.WriteLine("Ошибка в обработке JSON:");
+                Console.WriteLine($"Ошибка: {jsonEx.Message}");
+                Console.WriteLine($"Стек вызовов: {jsonEx.StackTrace}");
+            }
 
-        //    Console.WriteLine($"Стек вызовов: {ex.StackTrace}");
-        //}
+            Console.WriteLine($"Стек вызовов: {ex.StackTrace}");
+        }
         #endregion
+
 
         #region Test AuthorizeUser
         //try
@@ -911,5 +911,4 @@ public class Program
 
 
     }
-}
-   
+}   
