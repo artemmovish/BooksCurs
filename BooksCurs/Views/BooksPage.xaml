@@ -2,6 +2,52 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BooksCurs.Views.BooksPage"
+             xmlns:vm="clr-namespace:BooksCurs.ViewModels"
+             xmlns:models="clr-namespace:BooksCurs.models"
              Title="Книги">
-    
+    <ContentPage.BindingContext>
+        <vm:BooksViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="auto, auto">
+        <Grid ColumnDefinitions="auto, *">
+            <Button Text="Искать"/>
+            <Entry Placeholder="Поиск"
+                   Grid.Column="1"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <CollectionView ItemsSource="{Binding Books}">
+                
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type models:Book}">
+                        <Frame>
+                            <Grid ColumnDefinitions="*, 2.5*">
+                                <Image Source="{Binding picture}" Margin="5"/>
+                                <StackLayout Padding="3" Spacing="5" Grid.Column="2"
+                                             VerticalOptions="Center">
+                                    <Label Text="{Binding title}" HorizontalOptions="Center"
+                                               FontSize="Medium" FontAttributes="Bold"/>
+                                    <Label Text="{Binding user.fname}" HorizontalOptions="Center"
+                                               FontSize="Small" TextColor="Gray"/>
+                                    <Label Text="{Binding year_of_publication}" HorizontalOptions="Center"
+                                               FontSize="Small" TextColor="Gray"/>
+
+                                    <Button Text="Подробнее" BackgroundColor="Gray"
+                                            Margin="5,0,5,0"/>
+                                </StackLayout>
+                            </Grid>
+
+                        </Frame>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+   
 </ContentPage>

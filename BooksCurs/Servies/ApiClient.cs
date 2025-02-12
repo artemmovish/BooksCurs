@@ -5,14 +5,16 @@ using BooksCurs.models;
 public class ApiClient
 {
     #region Base
-    private readonly HttpClient _httpClient;
+    private static HttpClient _httpClient = new HttpClient();
     private string? _token;
-    public static string? base_url;
+    public static string? base_url = "https://ea1d1987-0e8d-4b40-bfaa-f05ebeff2dfc.tunnel4.com";
     public static bool Auth { get; private set; } = false;
-    public ApiClient()
+
+    static ApiClient()
     {
-        _httpClient = new HttpClient { BaseAddress = new Uri(base_url)};
+        _httpClient = new HttpClient() { BaseAddress = new Uri(base_url) };
     }
+
     public void SetToken(string token)
     {
         _token = token;
@@ -80,6 +82,7 @@ public class ApiClient
                 Console.WriteLine("Ошибка: не удалось получить токен авторизации.");
                 return false;
             }
+            Console.WriteLine(result.access_token);
             SetToken(result.access_token);
             return true;
         }

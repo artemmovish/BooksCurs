@@ -1,4 +1,6 @@
-﻿namespace BooksCurs
+﻿using BooksCurs.Views.Auth;
+
+namespace BooksCurs
 {
     public partial class App : Application
     {
@@ -6,7 +8,8 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            //MainPage = new AppShell();
+            MainPage = new AuthPage();
         }
     }
 }

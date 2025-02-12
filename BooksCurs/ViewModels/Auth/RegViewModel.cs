@@ -38,13 +38,14 @@ namespace BooksCurs.ViewModels.Auth
 
             var client = new ApiClient();
             await client.RegisterUser(user);
-            await Shell.Current.GoToAsync("../..");
+            Application.Current.MainPage = new AppShell();
+
         }
 
         [RelayCommand]
         async Task ToLogin()
         {
-            await Shell.Current.GoToAsync(nameof(AuthPage));
+            await Shell.Current.GoToAsync($"..");
         }
     }
 }

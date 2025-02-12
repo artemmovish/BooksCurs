@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BooksCurs.Views.Auth.RegPage"
              xmlns:vm="clr-namespace:BooksCurs.ViewModels.Auth"
-             Title="Регистрация">
+             Title="Регистрация"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
     <ContentPage.BindingContext>
         <vm:RegViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout Padding="20">
+    <StackLayout Spacing="20" VerticalOptions="Center" Padding="20">
         <!-- Логотип и название -->
-        <Image Source="images//icon.png" HorizontalOptions="Center" />
-        <Label Text="Название" FontSize="Large" HorizontalOptions="Center" />
+        <Image Source="images//icon.png" HeightRequest="100" HorizontalOptions="Center" />
+        <Label Text="BookVerse" FontSize="Large" HorizontalOptions="Center" />
 
         <!-- Поля для ввода данных -->
         <Entry Placeholder="Имя" Text="{Binding Name}" />
@@ -24,7 +26,7 @@
 
         <!-- Ссылка на вход, если есть аккаунт -->
         <!-- Ссылка на регистрацию -->
-        <Label>
+        <Label HorizontalOptions="Center" Margin="0,0,0,-10">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="Нет аккаунта?" />

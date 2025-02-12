@@ -3,31 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:BooksCurs.ViewModels.Auth"
              x:Class="BooksCurs.Views.Auth.AuthPage"
-             Title="AuthPage">
+             Title="Авторизация"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
     <ContentPage.BindingContext>
         <vm:AuthViewModel/>
     </ContentPage.BindingContext>
     
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+    <StackLayout VerticalOptions="Center" Padding="20" Spacing="20">
         <!-- Логотип и название -->
         <Image Source="images//icon.png" HeightRequest="100" HorizontalOptions="Center" />
-        <Label Text="Название" FontSize="Large" HorizontalOptions="Center" />
+        <Label Text="BookVerse" FontSize="Large" HorizontalOptions="Center" />
 
         <!-- Поля для ввода логина и пароля -->
-        <Entry Placeholder="Логин" Text="{Binding Login}" WidthRequest="300" />
-        <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" WidthRequest="300" />
+        <Entry Placeholder="Логин" Text="{Binding Login}"/>
+        <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True"/>
 
         <!-- Кнопка ввода -->
-        <Button Text="Вход" Command="{Binding LoginCommand}" BackgroundColor="Blue" TextColor="White" WidthRequest="300" />
+        <Button Text="Вход" Command="{Binding LoginsCommand}" BackgroundColor="Blue" TextColor="White"/>
 
         <!-- Ссылка на регистрацию -->
-        <Label>
+        <Label HorizontalOptions="Center" Margin="0,0,0,-10">
             <Label.FormattedText>
                 <FormattedString>
                     <Span Text="Нет аккаунта?" />
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-        <Button Text="Регистрация" Command="{Binding ToRegisterCommand}" BackgroundColor="Blue" TextColor="White" WidthRequest="300" />
+        <Button Text="Регистрация" Command="{Binding ToRegisterCommand}" BackgroundColor="Gray" TextColor="White"/>
     </StackLayout>
 </ContentPage>

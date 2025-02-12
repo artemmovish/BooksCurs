@@ -8,24 +8,22 @@
     xmlns:auth="clr-namespace:BooksCurs.Views.Auth"
     xmlns:routes="clr-namespace:BooksCurs.Navigation"
     Shell.FlyoutBehavior="Disabled"
-    Title="О книгах">
+    Title="О книгах"
+    Shell.TabBarForegroundColor="Green"
+    Shell.TabBarTitleColor="Green">
 
     <TabBar>
-        <ShellContent Icon="images//author-publications.png" 
+        <ShellContent Icon="images//books.png" 
                       Title="Книги"
                       ContentTemplate="{DataTemplate view:BooksPage }"/>
-        <ShellContent Icon="images//author-publications.png" 
+        <ShellContent Icon="images//authors.png" 
                       Title="Авторы"
                       ContentTemplate="{DataTemplate view:AuthorsPage }"/>
-        <ShellContent Icon="images//author-publications.png" 
+        <ShellContent Icon="images//genres.png" 
                       Title="Жанры"
                       ContentTemplate="{DataTemplate view:GenresPage }"/>
-        <ShellContent Icon="images//author-publications.png" 
+        <ShellContent Icon="images//author_publications.png" 
                       Title="Публикации автора"
                       ContentTemplate="{DataTemplate view:AuthorPublicatesPage }"/>
     </TabBar>
-
-    <ShellContent Route="{x:Static routes:Routes.AuthPage}" ContentTemplate="{DataTemplate auth:AuthPage}" />
-    <ShellContent Route="{x:Static routes:Routes.AuthReg}" ContentTemplate="{DataTemplate auth:RegPage}" />
-    
 </Shell>

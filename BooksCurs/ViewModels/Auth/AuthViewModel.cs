@@ -1,4 +1,5 @@
 ﻿using BooksCurs.models;
+using BooksCurs.Views;
 using BooksCurs.Views.Auth;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -8,9 +9,9 @@ namespace BooksCurs.ViewModels.Auth
     partial class AuthViewModel : ObservableObject
     {
         [ObservableProperty]
-        string login;
+        string login = "artemka";
         [ObservableProperty]
-        string password;
+        string password = "12345678";
 
         public AuthViewModel()
         {
@@ -18,11 +19,11 @@ namespace BooksCurs.ViewModels.Auth
         }
 
         [RelayCommand]
-        async Task Login()
+        async Task Logins()
         {
             var user = new User()
             {
-                login = login,
+                login = Login,
                 password = password
             };
 
@@ -30,7 +31,7 @@ namespace BooksCurs.ViewModels.Auth
 
             await client.AuthorizeUser(user);
             
-            await Shell.Current.GoToAsync("..");
+            Application.Current.MainPage = new AppShell();
         }
 
         [RelayCommand]
