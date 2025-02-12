@@ -2,27 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BooksCurs.Views.Auth.RegPage"
+             xmlns:vm="clr-namespace:BooksCurs.ViewModels.Auth"
              Title="Регистрация">
+    <ContentPage.BindingContext>
+        <vm:RegViewModel/>
+    </ContentPage.BindingContext>
     <StackLayout Padding="20">
         <!-- Логотип и название -->
         <Image Source="images//icon.png" HorizontalOptions="Center" />
         <Label Text="Название" FontSize="Large" HorizontalOptions="Center" />
 
         <!-- Поля для ввода данных -->
-        <Entry Placeholder="Имя" />
-        <Entry Placeholder="Фамилия" />
-        <Entry Placeholder="Отчество" />
-        <Entry Placeholder="Логин" />
-        <Entry Placeholder="Пароль" IsPassword="True" />
+        <Entry Placeholder="Имя" Text="{Binding Name}" />
+        <Entry Placeholder="Фамилия" Text="{Binding Fname}"/>
+        <Entry Placeholder="Отчество" Text="{Binding Lname}"/>
+        <Entry Placeholder="Логин" Text="{Binding Login}"/>
+        <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" />
 
         <!-- Кнопка регистрации -->
-        <Button Text="Регистрация" BackgroundColor="Blue" TextColor="White" />
+        <Button Text="Регистрация" Command="{Binding RegisterCommand}" BackgroundColor="Blue" TextColor="White" />
 
         <!-- Ссылка на вход, если есть аккаунт -->
-        <Button Text="Есть аккаунт?" 
-                Background="Transparent"
-                BorderWidth="0"
-                HorizontalOptions="Center" />
-        <Button Text="Вход" BackgroundColor="Gray" TextColor="White" />
+        <!-- Ссылка на регистрацию -->
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Нет аккаунта?" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Button Text="Авторизация" Command="{Binding ToLoginCommand}" BackgroundColor="Gray" TextColor="White" />
     </StackLayout>
 </ContentPage>

@@ -1,4 +1,5 @@
 ﻿using BooksCurs.models;
+using BooksCurs.Views.Auth;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -28,8 +29,14 @@ namespace BooksCurs.ViewModels.Auth
             var client = new ApiClient();
 
             await client.AuthorizeUser(user);
-
+            
             await Shell.Current.GoToAsync("..");
+        }
+
+        [RelayCommand]
+        async Task ToRegister()
+        {
+            await Shell.Current.GoToAsync(nameof(RegPage));
         }
     }
 }
