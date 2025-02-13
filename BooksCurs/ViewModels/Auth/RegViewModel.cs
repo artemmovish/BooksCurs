@@ -45,7 +45,7 @@ namespace BooksCurs.ViewModels.Auth
         [RelayCommand]
         async Task ToLogin()
         {
-            await Shell.Current.GoToAsync($"..");
+            await Shell.Current.GoToAsync($"//AuthPage");
         }
     }
 }

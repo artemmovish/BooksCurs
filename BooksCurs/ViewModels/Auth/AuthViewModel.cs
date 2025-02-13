@@ -37,7 +37,7 @@ namespace BooksCurs.ViewModels.Auth
         [RelayCommand]
         async Task ToRegister()
         {
-            await Shell.Current.GoToAsync(nameof(RegPage));
+            await Shell.Current.GoToAsync("//RegPage");
         }
     }
 }

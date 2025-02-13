@@ -9,7 +9,7 @@ namespace BooksCurs
             InitializeComponent();
 
             //MainPage = new AppShell();
-            MainPage = new AuthPage();
+            MainPage = new AuthShell();
         }
     }
 }
