@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BooksCurs.models;
 
-namespace BooksCurs.models
+namespace course_project_4.models
 {
     public class Book
     {
@@ -13,11 +9,14 @@ namespace BooksCurs.models
         public string? description { get; set; }
         public DateOnly year_of_publication { get; set; }
         public string? picture { get; set; }
+        public int? genre_id { get; set; }
+        public int? author_id { get; set; }
         public int publication_id { get; set; }
         public int user_id { get; set; }
         public DateOnly? created_at { get; set; }
         public DateOnly? updated_at { get; set; }
-
+        public Author? author { get; set; }
+        public Genre? genre { get; set; }
         public Publication? publication { get; set; }
         public User? user { get; set; }
 

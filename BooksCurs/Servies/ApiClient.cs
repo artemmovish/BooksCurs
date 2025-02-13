@@ -431,45 +431,45 @@ public class Program
         apiClient.SetToken(testToken);
 
         #region Test RegisterUser
-        try
-        {
-            Console.WriteLine("Начинаем регистрацию пользователя...");
+        //try
+        //{
+        //    Console.WriteLine("Начинаем регистрацию пользователя...");
 
-            var newUser = new User
-            {
-                name = "John2",
-                lname = "Doe2",
-                fname = "MiddleName2",
-                login = "johndoe3фыва",
-                password = "password1233фыва",
-                role_id = 1,
-            };
+        //    var newUser = new User
+        //    {
+        //        name = "John2",
+        //        lname = "Doe2",
+        //        fname = "MiddleName2",
+        //        login = "johndoe3фыва",
+        //        password = "password1233фыва",
+        //        role_id = 1,
+        //    };
 
-            bool isRegistered = await apiClient.RegisterUser(newUser);
+        //    bool isRegistered = await apiClient.RegisterUser(newUser);
 
-            if (isRegistered)
-            {
-                Console.WriteLine("Пользователь успешно зарегистрирован и авторизован.");
-            }
-            else
-            {
-                Console.WriteLine("Не удалось зарегистрировать или авторизовать пользователя.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Произошла ошибка при регистрации пользователя:");
-            Console.WriteLine($"Ошибка: {ex.Message}");
+        //    if (isRegistered)
+        //    {
+        //        Console.WriteLine("Пользователь успешно зарегистрирован и авторизован.");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Не удалось зарегистрировать или авторизовать пользователя.");
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine("Произошла ошибка при регистрации пользователя:");
+        //    Console.WriteLine($"Ошибка: {ex.Message}");
 
-            if (ex is JsonException jsonEx)
-            {
-                Console.WriteLine("Ошибка в обработке JSON:");
-                Console.WriteLine($"Ошибка: {jsonEx.Message}");
-                Console.WriteLine($"Стек вызовов: {jsonEx.StackTrace}");
-            }
+        //    if (ex is JsonException jsonEx)
+        //    {
+        //        Console.WriteLine("Ошибка в обработке JSON:");
+        //        Console.WriteLine($"Ошибка: {jsonEx.Message}");
+        //        Console.WriteLine($"Стек вызовов: {jsonEx.StackTrace}");
+        //    }
 
-            Console.WriteLine($"Стек вызовов: {ex.StackTrace}");
-        }
+        //    Console.WriteLine($"Стек вызовов: {ex.StackTrace}");
+        //}
         #endregion
 
 
@@ -512,64 +512,64 @@ public class Program
 
 
         #region Test GetAllBooks  
-        //try
-        //{
-        //    Console.WriteLine("Начинаем запрос списка книг...");
+        try
+        {
+            Console.WriteLine("Начинаем запрос списка книг...");
 
-        //    var books = await apiClient.GetAllBooks();
+            var books = await apiClient.GetAllBooks();
 
-        //    if (books != null)
-        //    {
-        //        Console.WriteLine("Список книг получен успешно.");
-        //        Console.WriteLine($"Количество книг: {books.Count}");
+            if (books != null)
+            {
+                Console.WriteLine("Список книг получен успешно.");
+                Console.WriteLine($"Количество книг: {books.Count}");
 
-        //        foreach (var book in books)
-        //        {
-        //            Console.WriteLine($"ID: {book.book_id}, Название: {book.title}");
-        //            Console.WriteLine($"Описание: {book.description}");
-        //            Console.WriteLine($"Год издания: {book.year_of_publication.Year}");
-        //            Console.WriteLine($"Обложка: {book.picture}");
+                foreach (var book in books)
+                {
+                    Console.WriteLine($"ID: {book.book_id}, Название: {book.title}");
+                    Console.WriteLine($"Описание: {book.description}");
+                    Console.WriteLine($"Год издания: {book.year_of_publication.Year}");
+                    Console.WriteLine($"Обложка: {book.picture}");
 
-        //            if (book.publication != null)
-        //            {
-        //                Console.WriteLine($"Издательство: {book.publication.title}, Адрес: {book.publication.address}");
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine("Издательство: информация отсутствует");
-        //            }
+                    if (book.publication != null)
+                    {
+                        Console.WriteLine($"Издательство: {book.publication.title}, Адрес: {book.publication.address}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Издательство: информация отсутствует");
+                    }
 
-        //            if (book.user != null)
-        //            {
-        //                Console.WriteLine($"Добавил: {book.user.lname} {book.user.fname} ({book.user.login})");
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine("Пользователь: информация отсутствует");
-        //            }
+                    if (book.user != null)
+                    {
+                        Console.WriteLine($"Добавил: {book.user.lname} {book.user.fname} ({book.user.login})");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Пользователь: информация отсутствует");
+                    }
 
-        //            Console.WriteLine(new string('-', 40));
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Не удалось получить список книг.");
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    Console.WriteLine("Произошла ошибка при получении списка книг:");
-        //    Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.WriteLine(new string('-', 40));
+                }
+            }
+            else
+            {
+                Console.WriteLine("Не удалось получить список книг.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Произошла ошибка при получении списка книг:");
+            Console.WriteLine($"Ошибка: {ex.Message}");
 
-        //    if (ex is JsonException jsonEx)
-        //    {
-        //        Console.WriteLine("Ошибка в обработке JSON:");
-        //        Console.WriteLine($"Ошибка: {jsonEx.Message}");
-        //        Console.WriteLine($"Стек вызовов: {jsonEx.StackTrace}");
-        //    }
+            if (ex is JsonException jsonEx)
+            {
+                Console.WriteLine("Ошибка в обработке JSON:");
+                Console.WriteLine($"Ошибка: {jsonEx.Message}");
+                Console.WriteLine($"Стек вызовов: {jsonEx.StackTrace}");
+            }
 
-        //    Console.WriteLine($"Стек вызовов: {ex.StackTrace}");
-        //}
+            Console.WriteLine($"Стек вызовов: {ex.StackTrace}");
+        }
         #endregion
 
         #region Test GetBookById
