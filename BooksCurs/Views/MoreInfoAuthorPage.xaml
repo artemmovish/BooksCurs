@@ -10,16 +10,15 @@
         <vm:MoreInfoAuthorViewModel/>
     </ContentPage.BindingContext>
 
-    <ScrollView>
+    <ScrollView BackgroundColor="#EFF9EB">
         <VerticalStackLayout Padding="5">
             <Button Text="Назад" BackgroundColor="Green"
                     Command="{Binding GoBackCommand}"/>
             <Frame Margin="5">
                 <VerticalStackLayout Spacing="10">
                     <Frame WidthRequest="250" HeightRequest="300">
-                        
+                        <Image Source="{Binding Author.picture}"/>
                     </Frame>
-                    <Image Source="{Binding Author.picture}"/>
                     <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
                         <Label Text="{Binding Author.name}"
                                FontSize="Large"

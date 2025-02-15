@@ -7,7 +7,7 @@ public class ApiClient
     #region Base
     private static HttpClient _httpClient = new HttpClient();
     private string? _token;
-    public static string? base_url = "https://32c444c3-1474-42de-a829-36985ac00bb3.tunnel4.com";
+    public static string? base_url = "https://5b0a35e1-c011-48ed-85f5-65fd73811e93.tunnel4.com";
     public static bool Auth { get; private set; } = false;
 
     static ApiClient()
@@ -121,6 +121,11 @@ public class ApiClient
                 return null;
             }
 
+            foreach (var book in result)
+            {
+                book.picture = "images//noimage.jpg";
+            }
+
             return result;
         }
         catch (HttpRequestException httpEx)
@@ -190,6 +195,11 @@ public class ApiClient
             {
                 Console.WriteLine("Ошибка: полученные данные пусты.");
                 return null;
+            }
+
+            foreach (var item in result)
+            {
+                item.picture = "images//noimage.jpg";
             }
 
             return result;

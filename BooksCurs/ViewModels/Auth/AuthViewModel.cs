@@ -9,9 +9,9 @@ namespace BooksCurs.ViewModels.Auth
     partial class AuthViewModel : ObservableObject
     {
         [ObservableProperty]
-        string login = "artemka";
+        string login = "";
         [ObservableProperty]
-        string password = "12345678";
+        string password = "";
 
         public AuthViewModel()
         {

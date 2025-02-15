@@ -10,7 +10,7 @@
         <vm:AuthorViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="auto, *">
+    <Grid RowDefinitions="auto, *"  BackgroundColor="#EFF9EB">
         <Grid>
             <Grid RowDefinitions="auto, auto">
                 <Grid ColumnDefinitions="auto, *">
@@ -23,8 +23,8 @@
             </Grid>
         </Grid>
 
-        <ScrollView Grid.Row="1">
-            <CollectionView ItemsSource="{Binding AuthorsSort}">
+        <ScrollView Grid.Row="1" Margin="0,10,0,0">
+            <CollectionView ItemsSource="{Binding AuthorsSort}" Margin="10,0,10,0">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
                 </CollectionView.ItemsLayout>

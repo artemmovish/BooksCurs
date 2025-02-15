@@ -9,56 +9,59 @@
         <vm:MoreInfoBookViewMOdel/>
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="White">
-            <Button Text="Назад" BackgroundColor="Green"
+    <ScrollView  BackgroundColor="#EFF9EB">
+        <Grid >
+            <Frame Margin="10">
+                <VerticalStackLayout Padding="20" Spacing="15" >
+                    <Button Text="Назад" BackgroundColor="Green"
                     Command="{Binding GoBackCommand}"/>
-            <!-- Обложка -->
-            <Frame HeightRequest="300" WidthRequest="250" CornerRadius="10" BackgroundColor="LightGray" HorizontalOptions="Center">
-                <Image Source="{Binding Book_.picture}" Aspect="AspectFill"/>
-            </Frame>
+                    <!-- Обложка -->
+                    <Frame HeightRequest="300" WidthRequest="250" CornerRadius="10" BackgroundColor="LightGray" HorizontalOptions="Center">
+                        <Image Source="{Binding Book_.picture}" Aspect="AspectFill"/>
+                    </Frame>
 
-            <!-- Название книги -->
-            <Label Text="{Binding Book_.title}" 
+                    <!-- Название книги -->
+                    <Label Text="{Binding Book_.title}" 
            FontSize="20" 
            FontAttributes="Bold" 
            TextColor="Black"
            HorizontalOptions="Center" />
 
-            <!-- Автор книги -->
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Spacing="5">
-                <Label Text="{Binding Book_.author.name}" TextColor="Green" FontSize="16"/>
-                <Label Text="{Binding Book_.author.fname}" TextColor="Green" FontSize="16"/>
-                <Label Text="{Binding Book_.author.lname}" TextColor="Green" FontSize="16"/>
-            </StackLayout>
+                    <!-- Автор книги -->
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Spacing="5">
+                        <Label Text="{Binding Book_.author.name}" TextColor="Green" FontSize="16"/>
+                        <Label Text="{Binding Book_.author.fname}" TextColor="Green" FontSize="16"/>
+                        <Label Text="{Binding Book_.author.lname}" TextColor="Green" FontSize="16"/>
+                    </StackLayout>
 
-            <!-- Жанр и Год издания -->
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
-                <Label Text="{Binding Book_.genre.style}" 
+                    <!-- Жанр и Год издания -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Label Text="{Binding Book_.genre.style}" 
                        HorizontalOptions="Center"
                TextColor="Green" 
                FontSize="16" 
                FontAttributes="Bold"
                Grid.Column="0" />
-                <Label Text="{Binding Book_.year_of_publication, StringFormat='{0:dd.MM.yyyy}'}" 
+                        <Label Text="{Binding Book_.year_of_publication, StringFormat='{0:dd.MM.yyyy}'}" 
                        HorizontalOptions="Center"
                TextColor="Green" 
                FontSize="16" 
                FontAttributes="Bold"
                Grid.Column="1" />
-            </Grid>
+                    </Grid>
 
-            <!-- Описание -->
-            <Frame HeightRequest="150" CornerRadius="10" Padding="10">
-                <Label Text="{Binding Book_.description}" 
+                    <!-- Описание -->
+                    <Frame HeightRequest="150" CornerRadius="10" Padding="10">
+                        <Label Text="{Binding Book_.description}" 
                VerticalOptions="Center" 
                HorizontalOptions="Center" 
                FontSize="14" 
                TextColor="Black"
                LineBreakMode="WordWrap"/>
+                    </Frame>
+                </VerticalStackLayout>
             </Frame>
-        </VerticalStackLayout>
-
+        </Grid>
     </ScrollView>
 
 </ContentPage>

@@ -20,7 +20,8 @@
         <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True"/>
 
         <!-- Кнопка ввода -->
-        <Button Text="Вход" Command="{Binding LoginsCommand}" BackgroundColor="Blue" TextColor="White"/>
+        <Button Text="Вход" BackgroundColor="Green"
+                Command="{Binding LoginsCommand}" TextColor="White"/>
 
         <!-- Ссылка на регистрацию -->
         <Label HorizontalOptions="Center" Margin="0,0,0,-10">

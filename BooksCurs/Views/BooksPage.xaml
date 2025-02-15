@@ -9,7 +9,7 @@
         <vm:BooksViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="auto, *">
+    <Grid RowDefinitions="auto, *"  BackgroundColor="#EFF9EB">
         <Grid RowDefinitions="auto, auto">
             <Grid ColumnDefinitions="auto, *">
                 <Button Text="Искать" Command="{Binding SearchCommand}"

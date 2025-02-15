@@ -9,7 +9,7 @@
     <ContentPage.BindingContext>
         <vm:RegViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout Spacing="20" VerticalOptions="Center" Padding="20">
+    <StackLayout Spacing="20" VerticalOptions="Center" Padding="20" > 
         <!-- Логотип и название -->
         <Image Source="images//icon.png" HeightRequest="100" HorizontalOptions="Center" />
         <Label Text="BookVerse" FontSize="Large" HorizontalOptions="Center" />
@@ -22,7 +22,7 @@
         <Entry Placeholder="Пароль" Text="{Binding Password}" IsPassword="True" />
 
         <!-- Кнопка регистрации -->
-        <Button Text="Регистрация" Command="{Binding RegisterCommand}" BackgroundColor="Blue" TextColor="White" />
+        <Button Text="Регистрация" Command="{Binding RegisterCommand}" BackgroundColor="Green" TextColor="White" />
 
         <!-- Ссылка на вход, если есть аккаунт -->
         <!-- Ссылка на регистрацию -->
