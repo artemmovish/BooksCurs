@@ -12,5 +12,10 @@ namespace BooksCurs
             Routing.RegisterRoute(nameof(RegPage), typeof(RegPage));
             Routing.RegisterRoute(nameof(BooksPage), typeof(BooksPage));
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new AuthShell();
+        }
     }
 }

@@ -9,61 +9,65 @@
         <vm:BooksViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="auto, auto, auto">
-        <Grid ColumnDefinitions="auto, *">
-            <Button Text="Искать" Command="{Binding SearchCommand}"
+    <Grid RowDefinitions="auto, *">
+        <Grid RowDefinitions="auto, auto">
+            <Grid ColumnDefinitions="auto, *">
+                <Button Text="Искать" Command="{Binding SearchCommand}"
         Margin="5,0,5,0"
         BackgroundColor="Green"/>
-            <Entry Placeholder="Поиск" Text="{Binding SearchText}"
+                <Entry Placeholder="Поиск" Text="{Binding SearchText}"
        Grid.Column="1" Margin="5,0,10,0"/>
-        </Grid>
-        <Grid Grid.Row="1" Margin="5">
-            <CollectionView ItemsSource="{Binding Genres}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
-                </CollectionView.ItemsLayout>
+            </Grid>
+            <Grid Grid.Row="1" Margin="5">
+                <CollectionView ItemsSource="{Binding Genres}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BackgroundColor="Green" Padding="10">
-                            <Button Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BooksViewModel}}, Path=FiltredCommand}"
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="Green" Padding="0" Opacity="0.8">
+                                <Button Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BooksViewModel}}, Path=FiltredCommand}"
                         CommandParameter="{Binding}"
-                        Text="{Binding}" TextColor="White" BackgroundColor="Transparent" Padding="0" HeightRequest="20" />
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                        Text="{Binding}" TextColor="White" BackgroundColor="Transparent" />
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
         </Grid>
-        <Grid Grid.Row="2" Padding="5">
-            <CollectionView ItemsSource="{Binding BooksSort}">
+        <ScrollView Grid.Row="1">
+            <Grid Padding="5">
+                <CollectionView ItemsSource="{Binding BooksSort}">
 
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-                </CollectionView.ItemsLayout>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type models:Book}">
-                        <Frame>
-                            <Grid ColumnDefinitions="*, 2*">
-                                <Image Source="{Binding picture}" Margin="5,5,5,5"/>
-                                <StackLayout Spacing="5" Grid.Column="2"
-                         VerticalOptions="Center">
-                                    <Label Text="{Binding title}" HorizontalOptions="Center"
-                           FontSize="Medium" FontAttributes="Bold"/>
-                                    <Label Text="{Binding author.lname}" HorizontalOptions="Center"
-                           FontSize="Small" TextColor="Gray"/>
-                                    <Label Text="{Binding genre.style, StringFormat='{0:dd.MM.yyyy}'}" HorizontalOptions="Center"
-                           FontSize="Small" TextColor="Gray"/>
-                                    <Button Text="Подробнее" BackgroundColor="Green"
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BooksViewModel}}, Path=MoreInfoCommand}"
-                        CommandParameter="{Binding}"
-                        Margin="5,0,5,0"/>
-                                </StackLayout>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type models:Book}">
+                            <Frame>
+                                <Grid ColumnDefinitions="*, 2*">
+                                    <Image Source="{Binding picture}" Margin="5,5,5,5"/>
+                                    <StackLayout Spacing="5" Grid.Column="2"
+                 VerticalOptions="Center">
+                                        <Label Text="{Binding title}" HorizontalOptions="Center"
+                   FontSize="Medium" FontAttributes="Bold"/>
+                                        <Label Text="{Binding author.lname}" HorizontalOptions="Center"
+                   FontSize="Small" TextColor="Gray"/>
+                                        <Label Text="{Binding genre.style, StringFormat='{0:dd.MM.yyyy}'}" HorizontalOptions="Center"
+                   FontSize="Small" TextColor="Gray"/>
+                                        <Button Text="Подробнее" BackgroundColor="Green"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BooksViewModel}}, Path=MoreInfoCommand}"
+                CommandParameter="{Binding}"
+                Margin="5,0,5,0"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </ScrollView>
     </Grid>
 </ContentPage>

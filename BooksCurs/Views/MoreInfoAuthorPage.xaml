@@ -35,35 +35,37 @@
                         <Label VerticalOptions="Center" HorizontalOptions="Center"
                                Text="{Binding Author.biography}"/>
                     </Frame>
-                    <CollectionView ItemsSource="{Binding Books}">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-                        </CollectionView.ItemsLayout>
+                    <ScrollView>
+                        <CollectionView ItemsSource="{Binding Books}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                            </CollectionView.ItemsLayout>
 
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="{x:Type models:Book}">
-                                <Frame>
-                                    <Grid ColumnDefinitions="*, 2*">
-                                        <Image Source="{Binding picture}" Margin="5,5,5,5"/>
-                                        <StackLayout Spacing="5" Grid.Column="2"
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type models:Book}">
+                                    <Frame>
+                                        <Grid ColumnDefinitions="*, 2*">
+                                            <Image Source="{Binding picture}" Margin="5,5,5,5"/>
+                                            <StackLayout Spacing="5" Grid.Column="2"
                              VerticalOptions="Center">
-                                            <Label Text="{Binding title}" HorizontalOptions="Center"
+                                                <Label Text="{Binding title}" HorizontalOptions="Center"
                                FontSize="Medium" FontAttributes="Bold"/>
-                                            <Label Text="{Binding user.fname}" HorizontalOptions="Center"
+                                                <Label Text="{Binding user.fname}" HorizontalOptions="Center"
                                FontSize="Small" TextColor="Gray"/>
-                                            <Label Text="{Binding year_of_publication}" HorizontalOptions="Center"
+                                                <Label Text="{Binding year_of_publication}" HorizontalOptions="Center"
                                FontSize="Small" TextColor="Gray"/>
 
-                                            <Button Text="Подробнее" BackgroundColor="Green"
+                                                <Button Text="Подробнее" BackgroundColor="Green"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MoreInfoAuthorViewModel}}, Path=MoreInfoCommand}"
                             CommandParameter="{Binding}"
                             Margin="5,0,5,0"/>
-                                        </StackLayout>
-                                    </Grid>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

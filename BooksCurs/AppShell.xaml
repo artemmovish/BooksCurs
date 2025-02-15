@@ -11,6 +11,20 @@
     Shell.TabBarForegroundColor="Green"
     Shell.TabBarTitleColor="Green">
 
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="auto, *, auto">
+            <Image Source="images//icon_green.png" WidthRequest="40" HeightRequest="40"/>
+            
+            <Label Grid.Column="1" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"
+                Text="BookVerse" FontSize="20" VerticalOptions="Center" />
+            
+            <Button Grid.Column="2" WidthRequest="100" HeightRequest="40"
+                    Background="Green" Margin="0,0,5,0"
+                Text="Выход" Padding="0" HorizontalOptions="End"
+                    Clicked="Button_Clicked"/>
+        </Grid>
+    </Shell.TitleView>
+
     <TabBar>
         <ShellContent Icon="images//books.png" 
                       Title="Книги"

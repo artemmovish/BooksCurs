@@ -16,7 +16,7 @@ namespace BooksCurs.ViewModels
         ObservableCollection<string> genres;
 
         [ObservableProperty]
-        string searchText;
+        string searchText = "";
 
         public BooksViewModel()
         {
@@ -69,6 +69,7 @@ namespace BooksCurs.ViewModels
         [RelayCommand]
         async Task Filtred(string str)
         {
+            await Search();
             BooksSort = new ObservableCollection<Book>(BooksSort.Where(b => b.genre.style == str));
         }
     }
