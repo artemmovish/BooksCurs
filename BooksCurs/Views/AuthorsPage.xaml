@@ -2,11 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BooksCurs.Views.AuthorsPage"
+             xmlns:vm="clr-namespace:BooksCurs.ViewModels"
+             xmlns:models="clr-namespace:BooksCurs.models"
              Title="Авторы">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.BindingContext>
+        <vm:AuthorViewModel/>
+    </ContentPage.BindingContext>
+    
+    <Grid RowDefinitions="auto, auto">
+        <Grid ColumnDefinitions="auto, *">
+            <Button Text="Искать" Command="{Binding SearchCommand}"
+                    Margin="5,0,5,0"
+                BackgroundColor="Green"/>
+            <Entry Placeholder="Поиск" Text="{Binding SearchText}"
+               Grid.Column="1" Margin="5,0,10,0"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Padding="5">
+            <CollectionView ItemsSource="{Binding AuthorsSort}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type models:Author}">
+                        <Frame>
+                            <Grid ColumnDefinitions="*, 2*">
+                                <Image Source="{Binding picture}" Margin="5,5,5,5"/>
+                                <StackLayout Spacing="5" Grid.Column="2"
+                                         VerticalOptions="Center">
+                                    <Label Text="{Binding lname}" HorizontalOptions="Center"
+                                           FontSize="Medium" FontAttributes="Bold"/>
+                                    <Label Text="{Binding name}" HorizontalOptions="Center"
+                                           FontSize="Small" TextColor="Gray"/>
+                                    <Label Text="{Binding fname}" HorizontalOptions="Center"
+                                           FontSize="Small" TextColor="Gray"/>
+
+                                    <Button Text="Подробнее" BackgroundColor="Green"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AuthorViewModel}}, Path=MoreInfoCommand}"
+                                        CommandParameter="{Binding}"
+                                        Margin="5,0,5,0"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+
 </ContentPage>

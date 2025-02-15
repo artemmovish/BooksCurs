@@ -7,7 +7,7 @@ public class ApiClient
     #region Base
     private static HttpClient _httpClient = new HttpClient();
     private string? _token;
-    public static string? base_url = "https://ea1d1987-0e8d-4b40-bfaa-f05ebeff2dfc.tunnel4.com";
+    public static string? base_url = "https://32c444c3-1474-42de-a829-36985ac00bb3.tunnel4.com";
     public static bool Auth { get; private set; } = false;
 
     static ApiClient()

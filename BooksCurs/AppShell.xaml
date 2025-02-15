@@ -14,15 +14,14 @@
     <TabBar>
         <ShellContent Icon="images//books.png" 
                       Title="Книги"
+                      Route="BooksPage"
                       ContentTemplate="{DataTemplate view:BooksPage }"/>
         <ShellContent Icon="images//authors.png" 
                       Title="Авторы"
+                      Route="AuthorsPage"
                       ContentTemplate="{DataTemplate view:AuthorsPage }"/>
-        <ShellContent Icon="images//genres.png" 
-                      Title="Жанры"
-                      ContentTemplate="{DataTemplate view:GenresPage }"/>
-        <ShellContent Icon="images//author_publications.png" 
-                      Title="Публикации автора"
-                      ContentTemplate="{DataTemplate view:AuthorPublicatesPage }"/>
     </TabBar>
+
+    <ShellContent Route="MoreInfoBook" ContentTemplate="{DataTemplate view:MoreInfoBookPage}"/>
+    <ShellContent Route="MoreInfoAuthorPage" ContentTemplate="{DataTemplate view:MoreInfoAuthorPage}"/>
 </Shell>

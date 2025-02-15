@@ -1,6 +1,6 @@
 ﻿using BooksCurs.models;
 
-namespace course_project_4.models
+namespace BooksCurs.models
 {
     public class Book
     {

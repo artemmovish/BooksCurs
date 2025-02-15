@@ -9,45 +9,61 @@
         <vm:BooksViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="auto, auto">
+    <Grid RowDefinitions="auto, auto, auto">
         <Grid ColumnDefinitions="auto, *">
-            <Button Text="Искать"/>
-            <Entry Placeholder="Поиск"
-                   Grid.Column="1"/>
+            <Button Text="Искать" Command="{Binding SearchCommand}"
+        Margin="5,0,5,0"
+        BackgroundColor="Green"/>
+            <Entry Placeholder="Поиск" Text="{Binding SearchText}"
+       Grid.Column="1" Margin="5,0,10,0"/>
         </Grid>
+        <Grid Grid.Row="1" Margin="5">
+            <CollectionView ItemsSource="{Binding Genres}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
 
-        <Grid Grid.Row="1">
-            <CollectionView ItemsSource="{Binding Books}">
-                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="Green" Padding="10">
+                            <Button Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BooksViewModel}}, Path=FiltredCommand}"
+                        CommandParameter="{Binding}"
+                        Text="{Binding}" TextColor="White" BackgroundColor="Transparent" Padding="0" HeightRequest="20" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <Grid Grid.Row="2" Padding="5">
+            <CollectionView ItemsSource="{Binding BooksSort}">
+
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
                 </CollectionView.ItemsLayout>
-                
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type models:Book}">
                         <Frame>
-                            <Grid ColumnDefinitions="*, 2.5*">
-                                <Image Source="{Binding picture}" Margin="5"/>
-                                <StackLayout Padding="3" Spacing="5" Grid.Column="2"
-                                             VerticalOptions="Center">
+                            <Grid ColumnDefinitions="*, 2*">
+                                <Image Source="{Binding picture}" Margin="5,5,5,5"/>
+                                <StackLayout Spacing="5" Grid.Column="2"
+                         VerticalOptions="Center">
                                     <Label Text="{Binding title}" HorizontalOptions="Center"
-                                               FontSize="Medium" FontAttributes="Bold"/>
-                                    <Label Text="{Binding user.fname}" HorizontalOptions="Center"
-                                               FontSize="Small" TextColor="Gray"/>
-                                    <Label Text="{Binding year_of_publication}" HorizontalOptions="Center"
-                                               FontSize="Small" TextColor="Gray"/>
-
-                                    <Button Text="Подробнее" BackgroundColor="Gray"
-                                            Margin="5,0,5,0"/>
+                           FontSize="Medium" FontAttributes="Bold"/>
+                                    <Label Text="{Binding author.lname}" HorizontalOptions="Center"
+                           FontSize="Small" TextColor="Gray"/>
+                                    <Label Text="{Binding genre.style, StringFormat='{0:dd.MM.yyyy}'}" HorizontalOptions="Center"
+                           FontSize="Small" TextColor="Gray"/>
+                                    <Button Text="Подробнее" BackgroundColor="Green"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:BooksViewModel}}, Path=MoreInfoCommand}"
+                        CommandParameter="{Binding}"
+                        Margin="5,0,5,0"/>
                                 </StackLayout>
                             </Grid>
-
                         </Frame>
-                        
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
     </Grid>
-   
 </ContentPage>

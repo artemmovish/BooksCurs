@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BooksCurs.Views.MoreInfoBookPage"
+             xmlns:models="clr-namespace:BooksCurs.models"
+             xmlns:vm="clr-namespace:BooksCurs.ViewModels"
+             Title="Подробнее о книге">
+    <ContentPage.BindingContext>
+        <vm:MoreInfoBookViewMOdel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="White">
+            <Button Text="Назад" BackgroundColor="Green"
+                    Command="{Binding GoBackCommand}"/>
+            <!-- Обложка -->
+            <Frame HeightRequest="300" WidthRequest="250" CornerRadius="10" BackgroundColor="LightGray" HorizontalOptions="Center">
+                <Image Source="{Binding Book_.picture}" Aspect="AspectFill"/>
+            </Frame>
+
+            <!-- Название книги -->
+            <Label Text="{Binding Book_.title}" 
+           FontSize="20" 
+           FontAttributes="Bold" 
+           TextColor="Black"
+           HorizontalOptions="Center" />
+
+            <!-- Автор книги -->
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal" Spacing="5">
+                <Label Text="{Binding Book_.author.name}" TextColor="Green" FontSize="16"/>
+                <Label Text="{Binding Book_.author.fname}" TextColor="Green" FontSize="16"/>
+                <Label Text="{Binding Book_.author.lname}" TextColor="Green" FontSize="16"/>
+            </StackLayout>
+
+            <!-- Жанр и Год издания -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Label Text="{Binding Book_.genre.style}" 
+                       HorizontalOptions="Center"
+               TextColor="Green" 
+               FontSize="16" 
+               FontAttributes="Bold"
+               Grid.Column="0" />
+                <Label Text="{Binding Book_.year_of_publication, StringFormat='{0:dd.MM.yyyy}'}" 
+                       HorizontalOptions="Center"
+               TextColor="Green" 
+               FontSize="16" 
+               FontAttributes="Bold"
+               Grid.Column="1" />
+            </Grid>
+
+            <!-- Описание -->
+            <Frame HeightRequest="150" CornerRadius="10" Padding="10">
+                <Label Text="{Binding Book_.description}" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" 
+               FontSize="14" 
+               TextColor="Black"
+               LineBreakMode="WordWrap"/>
+            </Frame>
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

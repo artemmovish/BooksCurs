@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BooksCurs.Views.MoreInfoAuthorPage"
+             xmlns:vm="clr-namespace:BooksCurs.ViewModels"
+             xmlns:models="clr-namespace:BooksCurs.models"
+             Title="Подробнее об авторе">
+
+    <ContentPage.BindingContext>
+        <vm:MoreInfoAuthorViewModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="5">
+            <Button Text="Назад" BackgroundColor="Green"
+                    Command="{Binding GoBackCommand}"/>
+            <Frame Margin="5">
+                <VerticalStackLayout Spacing="10">
+                    <Frame WidthRequest="250" HeightRequest="300">
+                        
+                    </Frame>
+                    <Image Source="{Binding Author.picture}"/>
+                    <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+                        <Label Text="{Binding Author.name}"
+                               FontSize="Large"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Author.fname}"
+                               FontSize="Large"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding Author.lname}"
+                               FontSize="Large"
+                               FontAttributes="Bold"/>
+                    </StackLayout>
+                    <Frame>
+                        <Label VerticalOptions="Center" HorizontalOptions="Center"
+                               Text="{Binding Author.biography}"/>
+                    </Frame>
+                    <CollectionView ItemsSource="{Binding Books}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type models:Book}">
+                                <Frame>
+                                    <Grid ColumnDefinitions="*, 2*">
+                                        <Image Source="{Binding picture}" Margin="5,5,5,5"/>
+                                        <StackLayout Spacing="5" Grid.Column="2"
+                             VerticalOptions="Center">
+                                            <Label Text="{Binding title}" HorizontalOptions="Center"
+                               FontSize="Medium" FontAttributes="Bold"/>
+                                            <Label Text="{Binding user.fname}" HorizontalOptions="Center"
+                               FontSize="Small" TextColor="Gray"/>
+                                            <Label Text="{Binding year_of_publication}" HorizontalOptions="Center"
+                               FontSize="Small" TextColor="Gray"/>
+
+                                            <Button Text="Подробнее" BackgroundColor="Green"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MoreInfoAuthorViewModel}}, Path=MoreInfoCommand}"
+                            CommandParameter="{Binding}"
+                            Margin="5,0,5,0"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
